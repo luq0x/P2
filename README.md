@@ -1,4 +1,4 @@
-# Analisador para Linguagem de Programação Fictícia
+# Analisador Léxico e Gramatical
 
 Este repositório acadêmico documenta a criação de um analisador léxico e a especificação gramatical para uma linguagem de programação customizada. O objetivo é construir as bases para um futuro compilador ou interpretador, focando nos estágios iniciais da análise de código-fonte.
 
