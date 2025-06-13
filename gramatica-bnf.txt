@@ -1,0 +1,63 @@
+<programa> ::= <header> <inicio> <bloco> <fim>
+
+<header> ::= "PROGRAMA " "\"" <var> "\"" ":" "\n"
+<inicio> ::= "INICIO" "\n"
+<fim> ::= "FIM"
+
+<bloco> ::= <espacos> (<statement> "\n")*
+
+<statement> ::= <declaracao_variavel>
+              | <atribuicao>
+              | <condicional>
+              | <loop>
+              | <chamada_funcao>
+              | <declaracao_funcao>
+
+<declaracao_variavel> ::= <tipo> <espacos> <var> (<espacos> "=" <espacos> <expressao>)?
+
+<atribuicao> ::= <espacos> <var> <espacos> "=" <espacos> <expressao>
+
+<condicional> ::= <if>
+<if> ::= "if" <espacos> "(" <expressao> ")" <espacos> "{" <bloco> "}" <elseif>* <else>?
+<elseif> ::= <espacos> "else if" <espacos> "(" <expressao> ")" <espacos> "{" <bloco> "}"
+<else> ::= <espacos> "else" <espacos> "{" <bloco> "}"
+
+<loop> ::= <while> | <do_while> | <for>
+
+<while> ::= "while" <espacos> "(" <expressao> ")" <espacos> "{" <bloco> "}"
+<do_while> ::= "do" <espacos> "{" <bloco> "}" <espacos> "while" <espacos> "(" <expressao> ")"
+<for> ::= "for" <espacos> "(" <atribuicao> ";" <espacos> <expressao> ";" <espacos> <atribuicao> ")" <espacos> "{" <bloco> "}"
+
+<declaracao_funcao> ::= <tipo_retorno> <espacos> "funcao" <espacos> <var> <espacos> "(" <params>? ")" <espacos> "{" <bloco> "}"
+<params> ::= <parametro> ("," <espacos> <parametro>)*
+<parametro> ::= <tipo> <espacos> <var>
+
+<chamada_funcao> ::= <var> <espacos> "(" <args>? ")"
+<args> ::= <expressao> ("," <espacos> <expressao>)*
+
+<tipo_retorno> ::= "void" | <tipo>
+<tipo> ::= "int" | "float" | "char"
+
+<expressao> ::= <expressao1> (<espacos> <logop> <espacos> <expressao1>)*
+<expressao1> ::= <expressao2> (<espacos> <relop> <espacos> <expressao2>)*
+<expressao2> ::= <expressao3> (<espacos> <adicao> <espacos> <expressao3>)*
+<expressao3> ::= <expressao4> (<espacos> <mult> <espacos> <expressao4>)*
+<expressao4> ::= "!" <expressao4>
+              | <num>
+              | <var>
+              | "(" <espacos> <expressao> <espacos> ")"
+              | <chamada_funcao>
+
+<adicao> ::= "+" | "-"
+<mult> ::= "*" | "/"
+<relop> ::= ">" | "<" | ">=" | "<=" | "==" | "!="
+<logop> ::= "&&" | "||"
+
+<espacos> ::= (" " | "\t" | "\n")*
+
+<var> ::= ([a-z] | [A-Z])+
+
+<num> ::= <positivo> | <negativo>
+<positivo> ::= ("0" | [1-9] [0-9]*) ("." [0-9]+)? <cientifico>?
+<negativo> ::= "-" <positivo>
+<cientifico> ::= "e" "-"? [1-9] [0-9]*
